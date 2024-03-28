@@ -1,0 +1,23 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.4.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "1b2ccf0"
+  },
+  "schemaVersion": 15,
+  "id": "Form_13j80ld",
+  "components": [
+    {
+      "content": "<h3>Image of {{selected_animal}}</h3>\n<div>\n    <img src= {{InputVariable_imagesrc}}>\n</div>",
+      "label": "HTML",
+      "type": "html",
+      "layout": {
+        "row": "Row_18oo0pq",
+        "columns": null
+      },
+      "id": "Field_02kptg9"
+    }
+  ],
+  "type": "default"
+}

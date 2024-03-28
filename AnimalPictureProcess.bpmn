@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.21.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.5.0" camunda:diagramRelationId="64fd992c-e9ca-430e-9ea3-07e03361269b">
+  <bpmn:collaboration id="Collaboration_1crp2hf">
+    <bpmn:participant id="Participant_1rs6s3o" name="Animal Picture Process" processRef="AnimalPictureProcessPID" />
+  </bpmn:collaboration>
+  <bpmn:process id="AnimalPictureProcessPID" name="AnimalPictureProcess" isExecutable="true" camunda:historyTimeToLive="P180D">
+    <bpmn:startEvent id="StartEvent_1" name="start">
+      <bpmn:outgoing>Flow_0d6848b</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="Gateway_0glzlmh" name="Animal routing">
+      <bpmn:incoming>Flow_14rbtp0</bpmn:incoming>
+      <bpmn:outgoing>Flow_1nit2qi</bpmn:outgoing>
+      <bpmn:outgoing>Flow_100qoab</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1wpugk8</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="SelectAnimalForPicture" name="Select the animal for picture">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formId="SelectAnimalForm" />
+        <zeebe:assignmentDefinition assignee="SelectAnimalForPicture" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0d6848b</bpmn:incoming>
+      <bpmn:outgoing>Flow_14rbtp0</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_076y6bf" name="Call Dog Rest API" zeebe:modelerTemplate="io.camunda.connectors.HttpJson.v2" zeebe:modelerTemplateVersion="6" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE3LjAzMzUgOC45OTk5N0MxNy4wMzM1IDEzLjQ0NzUgMTMuNDI4MSAxNy4wNTI5IDguOTgwNjUgMTcuMDUyOUM0LjUzMzE2IDE3LjA1MjkgMC45Mjc3NjUgMTMuNDQ3NSAwLjkyNzc2NSA4Ljk5OTk3QzAuOTI3NzY1IDQuNTUyNDggNC41MzMxNiAwLjk0NzA4MyA4Ljk4MDY1IDAuOTQ3MDgzQzEzLjQyODEgMC45NDcwODMgMTcuMDMzNSA0LjU1MjQ4IDE3LjAzMzUgOC45OTk5N1oiIGZpbGw9IiM1MDU1NjIiLz4KPHBhdGggZD0iTTQuOTMxMjYgMTQuMTU3MUw2Ljc4MTA2IDMuNzE0NzFIMTAuMTM3NUMxMS4xOTE3IDMuNzE0NzEgMTEuOTgyNCAzLjk4MzIzIDEyLjUwOTUgNC41MjAyN0MxMy4wNDY1IDUuMDQ3MzYgMTMuMzE1IDUuNzMzNTggMTMuMzE1IDYuNTc4OTJDMTMuMzE1IDcuNDQ0MTQgMTMuMDcxNCA4LjE1NTIyIDEyLjU4NDEgOC43MTIxNUMxMi4xMDY3IDkuMjU5MTMgMTEuNDU1MyA5LjYzNzA1IDEwLjYyOTggOS44NDU5TDEyLjA2MTkgMTQuMTU3MUgxMC4zMzE1TDkuMDMzNjQgMTAuMDI0OUg3LjI0MzUxTDYuNTEyNTQgMTQuMTU3MUg0LjkzMTI2Wk03LjQ5NzExIDguNTkyODFIOS4yNDI0OEM5Ljk5ODMyIDguNTkyODEgMTAuNTkwMSA4LjQyMzc0IDExLjAxNzcgOC4wODU2MUMxMS40NTUzIDcuNzM3NTMgMTEuNjc0MSA3LjI2NTEzIDExLjY3NDEgNi42Njg0MkMxMS42NzQxIDYuMTkxMDYgMTEuNTI0OSA1LjgxODExIDExLjIyNjUgNS41NDk1OUMxMC45MjgyIDUuMjcxMTMgMTAuNDU1OCA1LjEzMTkgOS44MDkzNiA1LjEzMTlIOC4xMDg3NEw3LjQ5NzExIDguNTkyODFaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K" camunda:class="customapp.src.main.java.com.techchallenge.customapp.LoggerDelegate.java">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="io.camunda:http-json:1" retries="3" />
+        <zeebe:ioMapping>
+          <zeebe:input source="noAuth" target="authentication.type" />
+          <zeebe:input source="GET" target="method" />
+          <zeebe:input source="https://dog.ceo/api/breeds/image/random" target="url" />
+          <zeebe:input source="20" target="connectionTimeoutInSeconds" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="resultVariable" value="image" />
+          <zeebe:header key="retryBackoff" value="PT0S" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1nit2qi</bpmn:incoming>
+      <bpmn:outgoing>Flow_1gqgpxo</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0ai82rn" name="Call Cat Rest API" zeebe:modelerTemplate="io.camunda.connectors.HttpJson.v2" zeebe:modelerTemplateVersion="6" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE3LjAzMzUgOC45OTk5N0MxNy4wMzM1IDEzLjQ0NzUgMTMuNDI4MSAxNy4wNTI5IDguOTgwNjUgMTcuMDUyOUM0LjUzMzE2IDE3LjA1MjkgMC45Mjc3NjUgMTMuNDQ3NSAwLjkyNzc2NSA4Ljk5OTk3QzAuOTI3NzY1IDQuNTUyNDggNC41MzMxNiAwLjk0NzA4MyA4Ljk4MDY1IDAuOTQ3MDgzQzEzLjQyODEgMC45NDcwODMgMTcuMDMzNSA0LjU1MjQ4IDE3LjAzMzUgOC45OTk5N1oiIGZpbGw9IiM1MDU1NjIiLz4KPHBhdGggZD0iTTQuOTMxMjYgMTQuMTU3MUw2Ljc4MTA2IDMuNzE0NzFIMTAuMTM3NUMxMS4xOTE3IDMuNzE0NzEgMTEuOTgyNCAzLjk4MzIzIDEyLjUwOTUgNC41MjAyN0MxMy4wNDY1IDUuMDQ3MzYgMTMuMzE1IDUuNzMzNTggMTMuMzE1IDYuNTc4OTJDMTMuMzE1IDcuNDQ0MTQgMTMuMDcxNCA4LjE1NTIyIDEyLjU4NDEgOC43MTIxNUMxMi4xMDY3IDkuMjU5MTMgMTEuNDU1MyA5LjYzNzA1IDEwLjYyOTggOS44NDU5TDEyLjA2MTkgMTQuMTU3MUgxMC4zMzE1TDkuMDMzNjQgMTAuMDI0OUg3LjI0MzUxTDYuNTEyNTQgMTQuMTU3MUg0LjkzMTI2Wk03LjQ5NzExIDguNTkyODFIOS4yNDI0OEM5Ljk5ODMyIDguNTkyODEgMTAuNTkwMSA4LjQyMzc0IDExLjAxNzcgOC4wODU2MUMxMS40NTUzIDcuNzM3NTMgMTEuNjc0MSA3LjI2NTEzIDExLjY3NDEgNi42Njg0MkMxMS42NzQxIDYuMTkxMDYgMTEuNTI0OSA1LjgxODExIDExLjIyNjUgNS41NDk1OUMxMC45MjgyIDUuMjcxMTMgMTAuNDU1OCA1LjEzMTkgOS44MDkzNiA1LjEzMTlIOC4xMDg3NEw3LjQ5NzExIDguNTkyODFaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K" camunda:class="customapp.src.main.java.com.techchallenge.customapp.LoggerDelegate.java">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="io.camunda:http-json:1" retries="3" />
+        <zeebe:ioMapping>
+          <zeebe:input source="noAuth" target="authentication.type" />
+          <zeebe:input source="GET" target="method" />
+          <zeebe:input source="https://api.thecatapi.com/v1/images/0XYvRd7oD" target="url" />
+          <zeebe:input source="20" target="connectionTimeoutInSeconds" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="resultVariable" value="image" />
+          <zeebe:header key="retryBackoff" value="PT0S" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_100qoab</bpmn:incoming>
+      <bpmn:outgoing>Flow_03tbqax</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_14zxlme" name="Call Fox Rest API" zeebe:modelerTemplate="io.camunda.connectors.HttpJson.v2" zeebe:modelerTemplateVersion="6" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE3LjAzMzUgOC45OTk5N0MxNy4wMzM1IDEzLjQ0NzUgMTMuNDI4MSAxNy4wNTI5IDguOTgwNjUgMTcuMDUyOUM0LjUzMzE2IDE3LjA1MjkgMC45Mjc3NjUgMTMuNDQ3NSAwLjkyNzc2NSA4Ljk5OTk3QzAuOTI3NzY1IDQuNTUyNDggNC41MzMxNiAwLjk0NzA4MyA4Ljk4MDY1IDAuOTQ3MDgzQzEzLjQyODEgMC45NDcwODMgMTcuMDMzNSA0LjU1MjQ4IDE3LjAzMzUgOC45OTk5N1oiIGZpbGw9IiM1MDU1NjIiLz4KPHBhdGggZD0iTTQuOTMxMjYgMTQuMTU3MUw2Ljc4MTA2IDMuNzE0NzFIMTAuMTM3NUMxMS4xOTE3IDMuNzE0NzEgMTEuOTgyNCAzLjk4MzIzIDEyLjUwOTUgNC41MjAyN0MxMy4wNDY1IDUuMDQ3MzYgMTMuMzE1IDUuNzMzNTggMTMuMzE1IDYuNTc4OTJDMTMuMzE1IDcuNDQ0MTQgMTMuMDcxNCA4LjE1NTIyIDEyLjU4NDEgOC43MTIxNUMxMi4xMDY3IDkuMjU5MTMgMTEuNDU1MyA5LjYzNzA1IDEwLjYyOTggOS44NDU5TDEyLjA2MTkgMTQuMTU3MUgxMC4zMzE1TDkuMDMzNjQgMTAuMDI0OUg3LjI0MzUxTDYuNTEyNTQgMTQuMTU3MUg0LjkzMTI2Wk03LjQ5NzExIDguNTkyODFIOS4yNDI0OEM5Ljk5ODMyIDguNTkyODEgMTAuNTkwMSA4LjQyMzc0IDExLjAxNzcgOC4wODU2MUMxMS40NTUzIDcuNzM3NTMgMTEuNjc0MSA3LjI2NTEzIDExLjY3NDEgNi42Njg0MkMxMS42NzQxIDYuMTkxMDYgMTEuNTI0OSA1LjgxODExIDExLjIyNjUgNS41NDk1OUMxMC45MjgyIDUuMjcxMTMgMTAuNDU1OCA1LjEzMTkgOS44MDkzNiA1LjEzMTlIOC4xMDg3NEw3LjQ5NzExIDguNTkyODFaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K" camunda:class="customapp.src.main.java.com.techchallenge.customapp.LoggerDelegate.java">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="io.camunda:http-json:1" retries="3" />
+        <zeebe:ioMapping>
+          <zeebe:input source="noAuth" target="authentication.type" />
+          <zeebe:input source="GET" target="method" />
+          <zeebe:input source="https://randomfox.ca/floof/" target="url" />
+          <zeebe:input source="20" target="connectionTimeoutInSeconds" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="resultVariable" value="image" />
+          <zeebe:header key="retryBackoff" value="PT0S" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1wpugk8</bpmn:incoming>
+      <bpmn:outgoing>Flow_10h02tg</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0d6848b" sourceRef="StartEvent_1" targetRef="SelectAnimalForPicture" />
+    <bpmn:sequenceFlow id="Flow_14rbtp0" sourceRef="SelectAnimalForPicture" targetRef="Gateway_0glzlmh" />
+    <bpmn:sequenceFlow id="Flow_1nit2qi" name="Dog" sourceRef="Gateway_0glzlmh" targetRef="Activity_076y6bf">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=selected_animal="dog"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_100qoab" name="Cat" sourceRef="Gateway_0glzlmh" targetRef="Activity_0ai82rn">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=selected_animal="cat"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1wpugk8" name="Fox" sourceRef="Gateway_0glzlmh" targetRef="Activity_14zxlme">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=selected_animal="fox"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0uwv1td" sourceRef="Activity_1xzv07m" targetRef="Event_15lvtb2" />
+    <bpmn:sequenceFlow id="Flow_03tbqax" sourceRef="Activity_0ai82rn" targetRef="Activity_1xzv07m" />
+    <bpmn:userTask id="Activity_1xzv07m" name="Display Image">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:input source="=image.body.url" target="InputVariable_imagesrc" />
+        </zeebe:ioMapping>
+        <zeebe:formDefinition formId="Form_13j80ld" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_03tbqax</bpmn:incoming>
+      <bpmn:outgoing>Flow_0uwv1td</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1gqgpxo" sourceRef="Activity_076y6bf" targetRef="Activity_021teig">
+      <bpmn:extensionElements>
+        <zeebe:properties>
+          <zeebe:property name="animalpic" value="image.body.message" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_10h02tg" sourceRef="Activity_14zxlme" targetRef="Activity_0dgix7m" />
+    <bpmn:endEvent id="Event_1dle2rv" name="end">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:output source="=image.body.message" target="OutputVariable_2t3sdsq" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0szat93</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0szat93" sourceRef="Activity_021teig" targetRef="Event_1dle2rv" />
+    <bpmn:sequenceFlow id="Flow_19t58t4" sourceRef="Activity_0dgix7m" targetRef="Event_0p3fzzr" />
+    <bpmn:userTask id="Activity_021teig" name="Display Image">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:input source="=image.body.message" target="InputVariable_imagesrc" />
+        </zeebe:ioMapping>
+        <zeebe:formDefinition formId="Form_13j80ld" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1gqgpxo</bpmn:incoming>
+      <bpmn:outgoing>Flow_0szat93</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_0dgix7m" name="Display Image">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formId="Form_13j80ld" />
+        <zeebe:ioMapping>
+          <zeebe:input source="=image.body.image" target="InputVariable_imagesrc" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_10h02tg</bpmn:incoming>
+      <bpmn:outgoing>Flow_19t58t4</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_15lvtb2" name="end">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:output source="=image.body.url" target="OutputVariable_0u9t28j" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0uwv1td</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_0p3fzzr" name="end">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:output source="=image.body.image" target="OutputVariable_197arhm" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_19t58t4</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1crp2hf">
+      <bpmndi:BPMNShape id="Participant_1rs6s3o_di" bpmnElement="Participant_1rs6s3o" isHorizontal="true">
+        <dc:Bounds x="160" y="90" width="1180" height="720" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="212" y="262" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="219" y="305" width="23" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0glzlmh_di" bpmnElement="Gateway_0glzlmh" isMarkerVisible="true">
+        <dc:Bounds x="455" y="255" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="446" y="312" width="70" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1lxiakc_di" bpmnElement="SelectAnimalForPicture">
+        <dc:Bounds x="300" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_199sob8_di" bpmnElement="Activity_076y6bf" bioc:stroke="#0d4372" bioc:fill="#bbdefb" color:background-color="#bbdefb" color:border-color="#0d4372">
+        <dc:Bounds x="630" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1rpktor_di" bpmnElement="Activity_0ai82rn" bioc:stroke="#0d4372" bioc:fill="#bbdefb" color:background-color="#bbdefb" color:border-color="#0d4372">
+        <dc:Bounds x="630" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0waab9l_di" bpmnElement="Activity_14zxlme" bioc:stroke="#0d4372" bioc:fill="#bbdefb" color:background-color="#bbdefb" color:border-color="#0d4372">
+        <dc:Bounds x="630" y="370" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1vb3cbg_di" bpmnElement="Activity_1xzv07m">
+        <dc:Bounds x="830" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1dle2rv_di" bpmnElement="Event_1dle2rv">
+        <dc:Bounds x="1032" y="132" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1041" y="175" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1wsh2t9_di" bpmnElement="Activity_021teig">
+        <dc:Bounds x="830" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0fkk465_di" bpmnElement="Activity_0dgix7m">
+        <dc:Bounds x="830" y="370" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_15lvtb2_di" bpmnElement="Event_15lvtb2">
+        <dc:Bounds x="1032" y="262" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1041" y="305" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0p3fzzr_di" bpmnElement="Event_0p3fzzr">
+        <dc:Bounds x="1062" y="392" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1071" y="435" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0d6848b_di" bpmnElement="Flow_0d6848b">
+        <di:waypoint x="248" y="280" />
+        <di:waypoint x="300" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14rbtp0_di" bpmnElement="Flow_14rbtp0">
+        <di:waypoint x="400" y="280" />
+        <di:waypoint x="455" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1nit2qi_di" bpmnElement="Flow_1nit2qi">
+        <di:waypoint x="480" y="255" />
+        <di:waypoint x="480" y="150" />
+        <di:waypoint x="630" y="150" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="485" y="200" width="21" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_100qoab_di" bpmnElement="Flow_100qoab">
+        <di:waypoint x="505" y="280" />
+        <di:waypoint x="630" y="280" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="559" y="262" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1wpugk8_di" bpmnElement="Flow_1wpugk8">
+        <di:waypoint x="480" y="305" />
+        <di:waypoint x="480" y="410" />
+        <di:waypoint x="630" y="410" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="486" y="355" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0uwv1td_di" bpmnElement="Flow_0uwv1td">
+        <di:waypoint x="930" y="280" />
+        <di:waypoint x="1032" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03tbqax_di" bpmnElement="Flow_03tbqax">
+        <di:waypoint x="730" y="280" />
+        <di:waypoint x="830" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gqgpxo_di" bpmnElement="Flow_1gqgpxo">
+        <di:waypoint x="730" y="150" />
+        <di:waypoint x="830" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10h02tg_di" bpmnElement="Flow_10h02tg">
+        <di:waypoint x="730" y="410" />
+        <di:waypoint x="830" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0szat93_di" bpmnElement="Flow_0szat93">
+        <di:waypoint x="930" y="150" />
+        <di:waypoint x="1032" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19t58t4_di" bpmnElement="Flow_19t58t4">
+        <di:waypoint x="930" y="410" />
+        <di:waypoint x="1062" y="410" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
